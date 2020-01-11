@@ -1,0 +1,32 @@
+private void createConfirmDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(PhoneNumberLogInActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.verify_confirmation_alert_dialog, null);
+        builder.setView(mView);
+        final AlertDialog confirmDialog = builder.create();
+        confirmDialog.show();
+
+        //find text view
+        TextView phone_no_text = mView.findViewById(R.id.verify_confirm_dialog_phone_number_id);
+        phone_no_text.setText(phone_no);
+
+        //find buttons
+        TextView editButton = mView.findViewById(R.id.edit_button_confirm_dialog_id);
+        TextView okButton = mView.findViewById(R.id.ok_button_confirm_dialog_id);
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDialog.cancel();
+            }
+        });
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PhoneNumberLogInActivity.this, VerifyPhoneActivity.class);
+                intent.putExtra("user_name", user_name);
+                intent.putExtra("phone_number", phone_no);
+                startActivity(intent);
+            }
+        });
+    }
