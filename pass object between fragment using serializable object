@@ -1,0 +1,21 @@
+
+//code inside fragment
+private static final String USER_DATA_MODEL = "userDataModel";
+    public static ChatsFragment newInstance(UserDataModel userDataModel){
+
+        ChatsFragment mChatFragment = new ChatsFragment();
+
+        Bundle args = new Bundle();
+        args.putSerializable(USER_DATA_MODEL, userDataModel);
+        mChatFragment.setArguments(args);
+
+        return mChatFragment;
+    }
+    
+    
+    //inside onCreateView
+    //get fragment data
+        if (getArguments() != null){
+            currentUser = (UserDataModel) getArguments().getSerializable(USER_DATA_MODEL);
+        }
+ 
